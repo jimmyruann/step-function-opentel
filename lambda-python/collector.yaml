@@ -11,13 +11,13 @@ exporters:
   otlphttp:
     endpoint: https://ogz41654.sprint.dynatracelabs.com/api/v2/otlp
     headers:
-       Authorization: "Api-Token dt0c01.BD2E2J3JCNFM5AZ4IV7E2MHH.NFBUVK4UAKUH3VSHY4UCRCCE5DIDMF5HWVMEKNZHWIBYQZDCSUPDSYLFEWG7VWQO"
+      Authorization: "Api-Token dt0c01.ZCGQ2HO4EUOMDRTCX4F5JWGZ.BU6DCJDCENBS6BSU2GDPURQDOPQSSKCD3MSYEKW5SS5WNP7JLCA3PQOCA7AL657D"
   logging:
-    loglevel: debug
+    logLevel: debug
+  awsxray:
 
 service:
   pipelines:
     traces:
       receivers: [otlp]
-      processors: []
-      exporters: [logging, otlphttp]
+      exporters: [logging, otlphttp, awsxray]
