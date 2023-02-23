@@ -1,0 +1,23 @@
+#collector.yaml in the root directory
+#Set an environemnt variable 'OPENTELEMETRY_COLLECTOR_CONFIG_FILE' to '/var/task/collector.yaml'
+
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+
+exporters:
+  otlphttp:
+    endpoint: https://ogz41654.sprint.dynatracelabs.com/api/v2/otlp
+    headers:
+       Authorization: "Api-Token dt0c01.BD2E2J3JCNFM5AZ4IV7E2MHH.NFBUVK4UAKUH3VSHY4UCRCCE5DIDMF5HWVMEKNZHWIBYQZDCSUPDSYLFEWG7VWQO"
+  logging:
+    loglevel: debug
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: []
+      exporters: [logging, otlphttp]
